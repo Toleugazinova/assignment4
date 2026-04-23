@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Self Care</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(135deg, #c3cfe2, #c3e0e5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      width: 70%;
+    }
+
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      background: #6c63ff;
+      color: white;
+      border-radius: 8px;
+    }
+
+    remove_button {
+
+    }
+
+    li {
+      margin-top: 10px;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>My Self-Care List</h2>
+
+  <input type="text" id="task">
+  <button onclick="addTask()">Add</button>
+
+  <ul id="list"></ul>
+
+  <a href="index.html">Back</a>
+</div>
+
+<script>
+  function addTask() {
+    let task = document.getElementById("task").value;
+
+    if (task == "") {
+      alert("Write something!");
+      return;
+    }
+
+    let li = document.createElement("li");
+    li.innerText = task;
+
+    li.onclick = function() {
+      li.style.textDecoration = "line-through";
+    }
+
+    let btn = document.createElement("span");
+    btn.innerText = "X";
+    btn.style.cursor = "pointer"
+    btn.style.marginLeft = "10px"
+    btn.onclick = function() {
+      li.remove();
+    }
+
+    li.appendChild(btn);
+    document.getElementById("list").appendChild(li);
+
+    document.getElementById("task").value = "";
+  }
+</script>
+
+</body>
+</html>

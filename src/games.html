@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Games</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #c3e0e5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 320px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      background: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    select {
+      margin-top: 10px;
+      padding: 8px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+
+  <h2>Games</h2>
+
+  <h3>Sort Numbers</h3>
+
+  <input type="text" id="numbers" placeholder="1,5,3">
+
+  <select id="order">
+    <option value="asc">Ascending</option>
+    <option value="desc">Descending</option>
+  </select>
+
+  <button onclick="sortNumbers()">Sort</button>
+
+  <p id="result"></p>
+
+  <hr>
+
+  <h3>Guess the Number</h3>
+
+  <p>Guess from 1 to 100</p>
+
+  <input type="number" id="guess">
+  <button onclick="checkGuess()">Guess</button>
+
+  <p id="feedback"></p>
+
+  <a href="index.html">Back</a>
+
+</div>
+
+<script>
+  function sortNumbers() {
+    let input = document.getElementById("numbers").value;
+    let order = document.getElementById("order").value;
+
+    let arr = input.split(",");
+
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = Number(arr[i]);
+
+      if (isNaN(arr[i])) {
+        document.getElementById("result").innerText = "Only numbers!";
+        return;
+      }
+    }
+
+    if (order == "asc") {
+      arr.sort(function(a, b) {
+        return a - b;
+      });
+    } else {
+      arr.sort(function(a, b) {
+        return b - a;
+      });
+    }
+
+    document.getElementById("result").innerText = arr;
+  }
+
+  let randomNumber = Math.floor(Math.random() * 100) + 1;
+  let attempts = 0;
+
+  function checkGuess() {
+    let guess = Number(document.getElementById("guess").value);
+    attempts++;
+
+    if (guess < 1 || guess > 100) {
+      document.getElementById("feedback").innerText = "Enter number 1-100!";
+      return;
+    }
+
+    if (guess > randomNumber) {
+      document.getElementById("feedback").innerText = "Too high";
+    }
+    else if (guess < randomNumber) {
+      document.getElementById("feedback").innerText = "Too low";
+    }
+    else {
+      document.getElementById("feedback").innerText =
+        "Correct! Attempts: " + attempts;
+
+      randomNumber = Math.floor(Math.random() * 100) + 1;
+      attempts = 0;
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mental Health</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      width: 300px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #6c63ff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #574fd6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Mental Health</h1>
+  <p>Take care of yourself</p>
+
+  <button onclick="changeColor()">Change Mood</button>
+
+  <p id="date"></p>
+
+  <br>
+  <a href="todo.html">Self Care List</a><br>
+  <a href="form.html">Contact</a><br>
+  <a href="games.html">Contact</a>
+
+</div>
+
+<script>
+  function changeColor() {
+    let colors = ["#a8edea", "#fed6e3", "#d4fc79", "#96e6a1"];
+    let random = Math.floor(Math.random() * colors.length);
+    document.body.style.background = colors[random];
+  }
+
+  function showDate() {
+    let now = new Date();
+    document.getElementById("date").innerText = now.toLocaleString();
+  }
+
+  setInterval(showDate, 1000);
+</script>
+
+</body>
+</html>

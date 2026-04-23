@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: linear-gradient(135deg, #ffffe0, #d1fdff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 500px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      background: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Contact</h2>
+
+  <form onsubmit="return validateForm()">
+    Name:
+    <input type="text" id="name">
+
+    Email:
+    <input type="text" id="email">
+
+    Password:
+    <input type="password" id="pass">
+
+    Confirm your password:
+    <input type="password" id="pass2">
+
+    <button type="submit">Send</button>
+  </form>
+
+  <p id="error" style="color:red;"></p>
+
+</div>
+
+<script>
+  function validateForm() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("pass").value;
+    let pass2 = document.getElementById("pass2").value;
+
+    if (name == "" , email == "" , pass == "" || pass2 == "") {
+      document.getElementById("error").innerText = "Fill all fields!";
+      return false;
+    }
+
+    if (!email.includes("@")) {
+      document.getElementById("error").innerText = "Wrong email!";
+      return false;
+    }
+
+    if (pass.length < 6) {
+      document.getElementById("error").innerText = "Password too short!";
+      return false;
+    }
+
+    if (pass != pass2) {
+      document.getElementById("error").innerText = "Passwords not same!";
+      return false;
+    }
+
+    alert("Sent!");
+    return true;
+  }
+</script>
+
+</body>
+</html>
